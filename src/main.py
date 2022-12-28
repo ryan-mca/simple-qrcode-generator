@@ -66,16 +66,23 @@ def wifi_qr_code():
     wifi_qr_code_label = ctk.CTkLabel(master=wifi_qr_code_frame, text="WiFi QR-Code", font=("Helvetica", 24))
     wifi_ssid_input = ctk.CTkEntry(master=wifi_qr_code_frame, placeholder_text="WiFi SSID")
     wifi_passwd_input = ctk.CTkEntry(master=wifi_qr_code_frame, placeholder_text="WiFi Password", show="*")
-    generate_qr_button = ctk.CTkButton(master=wifi_qr_code_frame, text="Generate")
+    gen_qr_button = ctk.CTkButton(master=wifi_qr_code_frame, text="Generate", command=gen_wifi_qr_code(wifi_ssid_input.get(), wifi_passwd_input.get(), sec_type_cbox.get()))
 
     wifi_qr_code_label.pack(pady=12, padx=10)
     wifi_ssid_input.pack(pady=6, padx=10)
     wifi_passwd_input.pack(pady=6, padx=10)
     sec_type_cbox.pack(pady=6, padx=10)
-    generate_qr_button.pack(pady=12, padx=10)
+    gen_qr_button.pack(pady=12, padx=10)
     sec_type_cbox.set("Security Type")
 
     wifi_qr_code_frame.pack(pady=20, padx=60, fill="both", expand=True)
+
+def gen_wifi_qr_code(SSID,PASSWD,SEC_TYPE):
+    wifi_data = f"WIFI:T:{SEC_TYPE};S:{SSID};P:{PASSWD}"
+
+    img = qrcode.make(wifi_data)
+
+    img.save(f"{SSID}_qr_code.png")
 
 if __name__ == "__main__":
     main()
