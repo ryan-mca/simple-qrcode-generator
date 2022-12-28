@@ -2,7 +2,7 @@
 """
 # --- Imports ---
 import customtkinter as ctk
-import qrcode
+import qr_logic
 
 # --- Constants ---
 win = ctk.CTk()
@@ -76,13 +76,6 @@ def wifi_qr_code():
     sec_type_cbox.set("Security Type")
 
     wifi_qr_code_frame.pack(pady=20, padx=60, fill="both", expand=True)
-
-def gen_wifi_qr_code(SSID,PASSWD,SEC_TYPE):
-    wifi_data = f"WIFI:T:{SEC_TYPE};S:{SSID};P:{PASSWD}"
-
-    img = qrcode.make(wifi_data)
-
-    img.save(f"{SSID}_qr_code.png")
 
 if __name__ == "__main__":
     main()
