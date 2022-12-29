@@ -28,6 +28,9 @@ wifi_qr_code_frame = ctk.CTkFrame(master=win)
 # Used in 'reg_qr_code()'
 reg_qr_frame = ctk.CTkFrame(master=win)
 
+# Used in 'vcard_qr_code()'
+vcard_qr_frame = ctk.CTkFrame(master=win)
+
 # --- Functions ---
 def main():
     """Runs the main window
@@ -97,6 +100,24 @@ def wifi_qr_code():
     sec_type_cbox.set("Security Type")
 
     wifi_qr_code_frame.pack(pady=20, padx=60, fill="both", expand=True)
+
+def vrcard_qr_code():
+    """Shows all the vcard_qr_code widgets
+    """
+    name_entry = ctk.CTkEntry(master=vcard_qr_frame, placeholder_text="Your Name")
+    company_entry = ctk.CTkEntry(master=vcard_qr_frame, placeholder_text="Your Company")
+    phone_entry = ctk.CTkEntry(master=vcard_qr_frame, placeholder_text="Your Phone Number")
+    email_entry = ctk.CTkEntry(master=vcard_qr_frame, placeholder_text="Your Email")
+    url_entry = ctk.CTkEntry(master=vcard_qr_frame, placeholder_text="Your Website")
+    submit_button = ctk.CTkButton(master=vcard_qr_frame, text="Generate", command=lambda: print("test"))
+
+    name_entry.pack(pady=12, padx=10)
+    company_entry.pack(pady=12, padx=10)
+    phone_entry.pack(pady=12, padx=10)
+    email_entry.pack(pady=12, padx=10)
+    url_entry.pack(pady=12, padx=10)
+
+    vcard_qr_frame.pack(pady=20, padx=60, fill="both", expand=True)
 
 if __name__ == "__main__":
     main()
