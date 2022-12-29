@@ -46,3 +46,29 @@ def gen_reg_qr_code(text):
 
     img = qr.make_image()
     img.save("regular_qrcode.png")
+
+def gen_vcard_qr_code(NAME, COMPANY, PHONE, EMAIL, URL):
+    """Creates a QR-Code for a virtual business card
+
+    Args:
+        NAME (String): The users name
+        COMPANY (String): The users company
+        PHONE (String): The users phone number
+        EMAIL (String): The user email address
+        URL (String): The users website
+    """
+
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.ERROR_CORRECT_L,
+        box_size=10,
+        border=2
+    )
+
+    vcard_data = f"BEGIN:VCARD\nVERSION:3.0\nN:{NAME}\nORG{COMPANY}\nTEL:{PHONE}\nEMAIL:{EMAIL}\nURL:{URL}\nEND:VCARD"
+
+    qr.add_data(vcard_data)
+    qrcode.make()
+
+    img = qr.make_image()
+    img.save("VCard-QR-Code.png")
