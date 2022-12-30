@@ -3,11 +3,11 @@
 # --- Imports ---
 import argparse
 import customtkinter as ctk
-from qr_logic import gen_wifi_qr_code, gen_reg_qr_code
+from qr_logic import gen_wifi_qr_code, gen_reg_qr_code, gen_vcard_qr_code
 from sys import exit
 # --- Constants ---
 win = ctk.CTk()
-VERSION = "1.0.2"
+VERSION = "1.1.0"
 
 # --- CustomTkinter stuff ---
 # Window settings
@@ -18,7 +18,7 @@ ctk.set_appearance_mode("dark")
 
 # Used in 'main()'
 main_frame = ctk.CTkFrame(master=win)
-cbox = ctk.CTkComboBox(master=main_frame, values=["Regular QR-Code", "WiFi QR-Code"],
+cbox = ctk.CTkComboBox(master=main_frame, values=["Regular QR-Code", "WiFi QR-Code", "Business Card QR-Code"],
                         font=("Helvetica", 11))
 
 # Used in 'wifi_qr_code()'
@@ -27,6 +27,9 @@ wifi_qr_code_frame = ctk.CTkFrame(master=win)
 
 # Used in 'reg_qr_code()'
 reg_qr_frame = ctk.CTkFrame(master=win)
+
+# Used in 'vcard_qr_code()'
+vcard_qr_frame = ctk.CTkFrame(master=win)
 
 # --- Functions ---
 def main():
@@ -67,6 +70,9 @@ def cbox_logic():
     elif choice == "Regular QR-Code":
         main_frame.pack_forget()
         reg_qr_code()
+    elif choice == "Business Card QR-Code":
+        main_frame.pack_forget()
+        vcard_qr_code()
 
 def reg_qr_code():
     """Shows all the reg_qr_code widgets
@@ -97,6 +103,29 @@ def wifi_qr_code():
     sec_type_cbox.set("Security Type")
 
     wifi_qr_code_frame.pack(pady=20, padx=60, fill="both", expand=True)
+
+def vcard_qr_code():
+    """Shows all the vcard_qr_code widgets
+    """
+    title = ctk.CTkLabel(master=vcard_qr_frame, text="Business Card", font=("Helvetica",24))
+    name_entry = ctk.CTkEntry(master=vcard_qr_frame, placeholder_text="Your Name")
+    company_entry = ctk.CTkEntry(master=vcard_qr_frame, placeholder_text="Your Company")
+    phone_entry = ctk.CTkEntry(master=vcard_qr_frame, placeholder_text="Your Phone Number")
+    email_entry = ctk.CTkEntry(master=vcard_qr_frame, placeholder_text="Your Email")
+    url_entry = ctk.CTkEntry(master=vcard_qr_frame, placeholder_text="Your Website")
+    submit_button = ctk.CTkButton(master=vcard_qr_frame, text="Generate",
+    command=lambda: gen_vcard_qr_code(name_entry.get(), company_entry.get(), phone_entry.get(),
+    email_entry.get(), url_entry.get()))
+
+    title.pack(pady=6, padx=10)
+    name_entry.pack(pady=6, padx=10)
+    company_entry.pack(pady=6, padx=10)
+    phone_entry.pack(pady=6, padx=10)
+    email_entry.pack(pady=6, padx=10)
+    url_entry.pack(pady=6, padx=10)
+    submit_button.pack(pady=6, padx=10)
+
+    vcard_qr_frame.pack(pady=20, padx=60, fill="both", expand=True)
 
 if __name__ == "__main__":
     main()
