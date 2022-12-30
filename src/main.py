@@ -7,20 +7,25 @@ from qr_logic import gen_wifi_qr_code, gen_reg_qr_code
 # --- Constants ---
 win = ctk.CTk()
 
+# --- Extra Variables ---
+qr_type = None
+
 # --- CustomTkinter stuff ---
+# Window settings
 win.title("Simple QR-Code Generator")
 win.geometry("500x350")
 ctk.set_default_color_theme("dark-blue")
 ctk.set_appearance_mode("dark")
 
+# Used in 'main()'
 main_frame = ctk.CTkFrame(master=win)
-wifi_qr_code_frame = ctk.CTkFrame(master=win)
-
-file_or_show_cbox = ctk.CTkComboBox(master=wifi_qr_code_frame, values=["Save to File", "Show"])
-sec_type_cbox = ctk.CTkComboBox(master=wifi_qr_code_frame, values=["WEP", "WPA", "None"])
 cbox = ctk.CTkComboBox(master=main_frame, values=["Regular QR-Code", "WiFi QR-Code"],
                         font=("Helvetica", 11))
 
+# Used in 'wifi_qr_code()'
+wifi_qr_code_frame = ctk.CTkFrame(master=win)
+#file_or_show_cbox = ctk.CTkComboBox(master=wifi_qr_code_frame, values=["Save to File", "Show"]) WIP
+sec_type_cbox = ctk.CTkComboBox(master=wifi_qr_code_frame, values=["WEP", "WPA", "None"])
 wifi_ssid_input = ctk.CTkEntry(master=wifi_qr_code_frame, placeholder_text="WiFi SSID")
 wifi_passwd_input = ctk.CTkEntry(master=wifi_qr_code_frame, placeholder_text="WiFi Password", show="*")
 
@@ -63,9 +68,23 @@ def main_to_wifi_qr_code():
 
     wifi_qr_code()
 
+def main_to_reg_qr_code():
+    """Gets rid of the main pages widgets and runs the 'reg_qr_code' function
+    """
+    main_frame.pack_forget()
+
+    reg_qr_code()
+
+def reg_qr_code():
+    """Shows all the reg_qr_code widgets
+    """
+    qr_type = "regular"
+
 def wifi_qr_code():
     """Shows all the wifi_qr_code widgets
     """
+    qr_type = "wifi"
+
     wifi_qr_code_label = ctk.CTkLabel(master=wifi_qr_code_frame, text="WiFi QR-Code", font=("Helvetica", 24))
     gen_qr_button = ctk.CTkButton(master=wifi_qr_code_frame, text="Generate", command=create_qr)
 
@@ -79,7 +98,15 @@ def wifi_qr_code():
     wifi_qr_code_frame.pack(pady=20, padx=60, fill="both", expand=True)
 
 def create_qr():
-    gen_wifi_qr_code(wifi_ssid_input.get(), wifi_passwd_input.get(), sec_type_cbox.get())
+    """Checks the type of QR-Code and creates the respective type
+    """
+    if qr_type == "wifi":
+        gen_wifi_qr_code(wifi_ssid_input.get(), wifi_passwd_input.get(), sec_type_cbox.get())
+        qr_type = None
+
+    elif qr_type == "regular":
+        gen_reg_qr_code()
+        qr_type = None
 
 if __name__ == "__main__":
     main()
