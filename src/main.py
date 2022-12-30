@@ -1,11 +1,13 @@
 """Handles the main customtkinter stuff
 """
 # --- Imports ---
+import argparse
 import customtkinter as ctk
 from qr_logic import gen_wifi_qr_code, gen_reg_qr_code
 
 # --- Constants ---
 win = ctk.CTk()
+VERSION = "1.0.1"
 
 # --- CustomTkinter stuff ---
 # Window settings
@@ -30,6 +32,12 @@ reg_qr_frame = ctk.CTkFrame(master=win)
 def main():
     """Runs the main window
     """
+    parser = argparse.ArgumentParser(description="Creates Different types of QR-Codes")
+    parser.add_argument("-v", "--version", help="Prints the version", action="store_true")
+    args = parser.parse_args()
+    if args.version:
+        print(f"Current Version: {VERSION}")
+        exit()
 
     cbox_select = ctk.CTkButton(master=main_frame, text="Select", command=cbox_logic)
     main_title = ctk.CTkLabel(master=main_frame, text="Simple QR-Code Generator",
