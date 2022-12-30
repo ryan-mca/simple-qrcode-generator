@@ -4,10 +4,10 @@
 import argparse
 import customtkinter as ctk
 from qr_logic import gen_wifi_qr_code, gen_reg_qr_code
-
+from sys import exit
 # --- Constants ---
 win = ctk.CTk()
-VERSION = "1.0.1"
+VERSION = "1.0.2"
 
 # --- CustomTkinter stuff ---
 # Window settings
