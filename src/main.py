@@ -2,7 +2,7 @@
 """
 # --- Imports ---
 import customtkinter as ctk
-import qr_logic
+from qr_logic import gen_wifi_qr_code, gen_reg_qr_code
 
 # --- Constants ---
 win = ctk.CTk()
@@ -20,6 +20,9 @@ file_or_show_cbox = ctk.CTkComboBox(master=wifi_qr_code_frame, values=["Save to 
 sec_type_cbox = ctk.CTkComboBox(master=wifi_qr_code_frame, values=["WEP", "WPA", "None"])
 cbox = ctk.CTkComboBox(master=main_frame, values=["Regular QR-Code", "WiFi QR-Code"],
                         font=("Helvetica", 11))
+
+wifi_ssid_input = ctk.CTkEntry(master=wifi_qr_code_frame, placeholder_text="WiFi SSID")
+wifi_passwd_input = ctk.CTkEntry(master=wifi_qr_code_frame, placeholder_text="WiFi Password", show="*")
 
 # --- Functions ---
 def main():
@@ -64,9 +67,7 @@ def wifi_qr_code():
     """Shows all the wifi_qr_code widgets
     """
     wifi_qr_code_label = ctk.CTkLabel(master=wifi_qr_code_frame, text="WiFi QR-Code", font=("Helvetica", 24))
-    wifi_ssid_input = ctk.CTkEntry(master=wifi_qr_code_frame, placeholder_text="WiFi SSID")
-    wifi_passwd_input = ctk.CTkEntry(master=wifi_qr_code_frame, placeholder_text="WiFi Password", show="*")
-    gen_qr_button = ctk.CTkButton(master=wifi_qr_code_frame, text="Generate", command=gen_wifi_qr_code(wifi_ssid_input.get(), wifi_passwd_input.get(), sec_type_cbox.get()))
+    gen_qr_button = ctk.CTkButton(master=wifi_qr_code_frame, text="Generate", command=create_qr)
 
     wifi_qr_code_label.pack(pady=12, padx=10)
     wifi_ssid_input.pack(pady=6, padx=10)
@@ -76,6 +77,9 @@ def wifi_qr_code():
     sec_type_cbox.set("Security Type")
 
     wifi_qr_code_frame.pack(pady=20, padx=60, fill="both", expand=True)
+
+def create_qr():
+    gen_wifi_qr_code(wifi_ssid_input.get(), wifi_passwd_input.get(), sec_type_cbox.get())
 
 if __name__ == "__main__":
     main()
