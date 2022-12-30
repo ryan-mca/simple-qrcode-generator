@@ -72,7 +72,7 @@ def cbox_logic():
         reg_qr_code()
     elif choice == "Business Card QR-Code":
         main_frame.pack_forget()
-        vrcard_qr_code()
+        vcard_qr_code()
 
 def reg_qr_code():
     """Shows all the reg_qr_code widgets
@@ -104,7 +104,7 @@ def wifi_qr_code():
 
     wifi_qr_code_frame.pack(pady=20, padx=60, fill="both", expand=True)
 
-def vrcard_qr_code():
+def vcard_qr_code():
     """Shows all the vcard_qr_code widgets
     """
     title = ctk.CTkLabel(master=vcard_qr_frame, text="Business Card", font=("Helvetica",24))
