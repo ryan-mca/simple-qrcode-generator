@@ -16,7 +16,7 @@ ctk.set_appearance_mode("dark")
 
 # Used in 'main()'
 main_frame = ctk.CTkFrame(master=win)
-cbox = ctk.CTkComboBox(master=main_frame, values=["Regular QR-Code WIP", "WiFi QR-Code"],
+cbox = ctk.CTkComboBox(master=main_frame, values=["Regular QR-Code", "WiFi QR-Code"],
                         font=("Helvetica", 11))
 
 # Used in 'wifi_qr_code()'

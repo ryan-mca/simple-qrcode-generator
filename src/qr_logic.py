@@ -34,5 +34,15 @@ def gen_reg_qr_code(text):
     Args:
         text (String): Holds the users input
     """
-    img = qrcode.make(text)
-    img.save("qrcode.img")
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.ERROR_CORRECT_L,
+        box_size=10,
+        border=2
+    )
+
+    qr.add_data(text)
+    qrcode.make()
+
+    img = qr.make_image()
+    img.save("regular_qrcode.png")
