@@ -2,4 +2,16 @@
 
 A simple app that can create several types of qrcodes
 
-## Go to testing branch
+## Dependencies
+
+### PIP
+
+~~~shell
+pip install customtkinter qrcode
+~~~
+
+or
+
+~~~shell
+pip install -r requirements.txt
+~~~
