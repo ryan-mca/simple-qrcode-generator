@@ -7,7 +7,7 @@ A simple app that can create several types of qrcodes
 ### PIP
 
 ~~~shell
-pip install customtkinter qrcode
+pip install customtkinter qrcode pillow
 ~~~
 
 or
