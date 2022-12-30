@@ -56,8 +56,7 @@ If there are better ways to install please let me know
 mkdir ~/.bin/
 
 # Creates the bash script thats the python script
-echo "#!/bin/bash
-python </path/to/main.py>" > ~/.bin/qr-code-gen
+echo "python </path/to/main.py>" > ~/.bin/qr-code-gen
 
 # Allows the bash script to be executed
 chmod +x ~/.bin/qr-code-gen
