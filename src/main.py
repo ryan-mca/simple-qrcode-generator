@@ -29,6 +29,9 @@ sec_type_cbox = ctk.CTkComboBox(master=wifi_qr_code_frame, values=["WEP", "WPA",
 wifi_ssid_input = ctk.CTkEntry(master=wifi_qr_code_frame, placeholder_text="WiFi SSID")
 wifi_passwd_input = ctk.CTkEntry(master=wifi_qr_code_frame, placeholder_text="WiFi Password", show="*")
 
+# Used in 'reg_qr_code()'
+reg_qr_code_frame = ctk.CTkFrame(master=win)
+
 # --- Functions ---
 def main():
     """Runs the main window
@@ -55,30 +58,22 @@ def cbox_logic():
     """Checks the users choice and runs the respective function
     """
     choice = cbox.get()
+    main_frame.pack_forget()
 
     if choice == "WiFi QR-Code":
-        main_to_wifi_qr_code()
+        wifi_qr_code()
     elif choice == "Regular QR-Code":
-        return
-
-def main_to_wifi_qr_code():
-    """Gets rid of the main pages widgets and runs the 'wifi_qr_code' function
-    """
-    main_frame.pack_forget()
-
-    wifi_qr_code()
-
-def main_to_reg_qr_code():
-    """Gets rid of the main pages widgets and runs the 'reg_qr_code' function
-    """
-    main_frame.pack_forget()
-
-    reg_qr_code()
+        reg_qr_code()
 
 def reg_qr_code():
     """Shows all the reg_qr_code widgets
     """
     qr_type = "regular"
+
+    reg_qr_code_label = ctk.CTkLabel(master=reg_qr_code_frame, text="Regular QR-Code", font=("Helvetica", 24))
+
+    reg_qr_code_label.pack(pady=12, padx=10)
+    reg_qr_code_frame.pack(pady=20, padx=60, fill="both", expand=True)
 
 def wifi_qr_code():
     """Shows all the wifi_qr_code widgets
