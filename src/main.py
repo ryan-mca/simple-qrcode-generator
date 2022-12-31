@@ -3,11 +3,12 @@
 # --- Imports ---
 import argparse
 import customtkinter as ctk
-from qr_logic import gen_wifi_qr_code, gen_reg_qr_code, gen_vcard_qr_code
+from qr_logic import gen_wifi_qr_code, gen_reg_qr_code, gen_vcard_qr_code, gen_email_qr_code
+# Required to package to an exe
 from sys import exit
 # --- Constants ---
 win = ctk.CTk()
-VERSION = "1.1.0"
+VERSION = "1.2.0"
 
 # --- CustomTkinter stuff ---
 # Window settings
@@ -18,7 +19,7 @@ ctk.set_appearance_mode("dark")
 
 # Used in 'main()'
 main_frame = ctk.CTkFrame(master=win)
-cbox = ctk.CTkComboBox(master=main_frame, values=["Regular QR-Code", "WiFi QR-Code", "Business Card QR-Code"],
+cbox = ctk.CTkComboBox(master=main_frame, values=["Regular QR-Code", "WiFi QR-Code", "Business Card QR-Code", "Email QR-Code"],
                         font=("Helvetica", 11))
 
 # Used in 'wifi_qr_code()'
@@ -30,6 +31,9 @@ reg_qr_frame = ctk.CTkFrame(master=win)
 
 # Used in 'vcard_qr_code()'
 vcard_qr_frame = ctk.CTkFrame(master=win)
+
+# Used in 'email_qr_code()'
+email_qr_frame = ctk.CTkFrame(master=win)
 
 # --- Functions ---
 def main():
@@ -73,6 +77,9 @@ def cbox_logic():
     elif choice == "Business Card QR-Code":
         main_frame.pack_forget()
         vcard_qr_code()
+    elif choice == "Email QR-Code":
+        main_frame.pack_forget()
+        email_qr_code()
 
 def reg_qr_code():
     """Shows all the reg_qr_code widgets
@@ -126,6 +133,24 @@ def vcard_qr_code():
     submit_button.pack(pady=6, padx=10)
 
     vcard_qr_frame.pack(pady=20, padx=60, fill="both", expand=True)
+
+def email_qr_code():
+    """Shows all the email_qr_code widgets
+    """
+    title = ctk.CTkLabel(master=email_qr_frame, text="Calendar QR-Code", font=("Helvetica", 24))
+    recipient = ctk.CTkEntry(master=email_qr_frame, placeholder_text="Recipient")
+    subject = ctk.CTkEntry(master=email_qr_frame, placeholder_text="Subject")
+    body = ctk.CTkEntry(master=email_qr_frame, placeholder_text="Body")
+    submit = ctk.CTkButton(master=email_qr_frame, text="Generate", command=lambda: gen_email_qr_code(recipient.get(), subject.get(), body.get()))
+
+    title.pack(pady=12, padx=10)
+    recipient.pack(pady=12, padx=10)
+    subject.pack(pady=12, padx=10)
+    body.pack(pady=12, padx=10)
+    submit.pack(pady=12, padx=10)
+    
+    email_qr_frame.pack(pady=20, padx=60, fill="both", expand=True)
+    
 
 if __name__ == "__main__":
     main()
