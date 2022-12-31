@@ -18,8 +18,7 @@ ctk.set_appearance_mode("dark")
 
 # Used in 'main()'
 main_frame = ctk.CTkFrame(master=win)
-cbox = ctk.CTkComboBox(master=main_frame, values=["Regular QR-Code", "WiFi QR-Code", "Business Card QR-Code", "Calendar QR-Code"],
-                        font=("Helvetica", 11))
+cbox = ctk.CTkComboBox(master=main_frame, values=["Regular QR-Code", "WiFi QR-Code", "Business Card QR-Code", "Email QR-Code"]
 
 # Used in 'wifi_qr_code()'
 wifi_qr_code_frame = ctk.CTkFrame(master=win)
@@ -31,8 +30,8 @@ reg_qr_frame = ctk.CTkFrame(master=win)
 # Used in 'vcard_qr_code()'
 vcard_qr_frame = ctk.CTkFrame(master=win)
 
-# Used in 'calendar_qr_code()'
-calendar_qr_frame = ctk.CTkFrame(master=win)
+# Used in 'email_qr_code()'
+email_qr_frame = ctk.CTkFrame(master=win)
 
 # --- Functions ---
 def main():
@@ -76,9 +75,9 @@ def cbox_logic():
     elif choice == "Business Card QR-Code":
         main_frame.pack_forget()
         vcard_qr_code()
-    elif choice == "Calendar QR-Code":
+    elif choice == "Email QR-Code":
         main_frame.pack_forget()
-        calendar_qr_code()
+        email_qr_code()
 
 def reg_qr_code():
     """Shows all the reg_qr_code widgets
@@ -133,14 +132,14 @@ def vcard_qr_code():
 
     vcard_qr_frame.pack(pady=20, padx=60, fill="both", expand=True)
 
-def calendar_qr_code():
-    """Shows all the calendar_qr_code widgets
+def email_qr_code():
+    """Shows all the email_qr_code widgets
     """
-    title = ctk.CTkLabel(master=calendar_qr_frame, text="Calendar QR-Code", font=("Helvetica", 24))
-    recipient = ctk.CTkEntry(master=calendar_qr_frame, placeholder_text="Recipient")
-    subject = ctk.CTkEntry(master=calendar_qr_frame, placeholder_text="Subject")
-    body = ctk.CTkEntry(master=calendar_qr_frame, placeholder_text="Body")
-    submit = ctk.CTkButton(master=calendar_qr_frame, text="Generate", command=lambda: print("hello"))
+    title = ctk.CTkLabel(master=email_qr_frame, text="Calendar QR-Code", font=("Helvetica", 24))
+    recipient = ctk.CTkEntry(master=email_qr_frame, placeholder_text="Recipient")
+    subject = ctk.CTkEntry(master=email_qr_frame, placeholder_text="Subject")
+    body = ctk.CTkEntry(master=email_qr_frame, placeholder_text="Body")
+    submit = ctk.CTkButton(master=email_qr_frame, text="Generate", command=lambda: print("hello"))
 
     title.pack(pady=12, padx=10)
     recipient.pack(pady=12, padx=10)
@@ -148,7 +147,7 @@ def calendar_qr_code():
     body.pack(pady=12, padx=10)
     submit.pack(pady=12, padx=10)
     
-    calendar_qr_frame.pack(pady=20, padx=60, fill="both", expand=True)
+    email_qr_frame.pack(pady=20, padx=60, fill="both", expand=True)
     
 
 if __name__ == "__main__":

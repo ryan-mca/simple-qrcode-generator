@@ -72,3 +72,6 @@ def gen_vcard_qr_code(NAME, COMPANY, PHONE, EMAIL, URL):
 
     img = qr.make_image()
     img.save("VCard-QR-Code.png")
+
+def gen_email_qr_code(RECIPIENT, SUBJECT, BODY):
+    return
