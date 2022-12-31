@@ -3,7 +3,7 @@
 # --- Imports ---
 import argparse
 import customtkinter as ctk
-from qr_logic import gen_wifi_qr_code, gen_reg_qr_code, gen_vcard_qr_code
+from qr_logic import gen_wifi_qr_code, gen_reg_qr_code, gen_vcard_qr_code, gen_email_qr_code
 from sys import exit
 # --- Constants ---
 win = ctk.CTk()
@@ -18,7 +18,8 @@ ctk.set_appearance_mode("dark")
 
 # Used in 'main()'
 main_frame = ctk.CTkFrame(master=win)
-cbox = ctk.CTkComboBox(master=main_frame, values=["Regular QR-Code", "WiFi QR-Code", "Business Card QR-Code", "Email QR-Code"]
+cbox = ctk.CTkComboBox(master=main_frame, values=["Regular QR-Code", "WiFi QR-Code", "Business Card QR-Code", "Email QR-Code"],
+                        font=("Helvetica", 11))
 
 # Used in 'wifi_qr_code()'
 wifi_qr_code_frame = ctk.CTkFrame(master=win)
@@ -139,7 +140,7 @@ def email_qr_code():
     recipient = ctk.CTkEntry(master=email_qr_frame, placeholder_text="Recipient")
     subject = ctk.CTkEntry(master=email_qr_frame, placeholder_text="Subject")
     body = ctk.CTkEntry(master=email_qr_frame, placeholder_text="Body")
-    submit = ctk.CTkButton(master=email_qr_frame, text="Generate", command=lambda: print("hello"))
+    submit = ctk.CTkButton(master=email_qr_frame, text="Generate", command=lambda: gen_email_qr_code(recipient.get(), subject.get(), body.get()))
 
     title.pack(pady=12, padx=10)
     recipient.pack(pady=12, padx=10)

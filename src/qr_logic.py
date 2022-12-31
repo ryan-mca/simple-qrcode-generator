@@ -81,7 +81,7 @@ def gen_email_qr_code(RECIPIENT, SUBJECT, BODY):
         SUBJECT (String): The emails subject
         BODY (String): The emails body
     """
-    
+
     qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.ERROR_CORRECT_L,
@@ -95,5 +95,4 @@ def gen_email_qr_code(RECIPIENT, SUBJECT, BODY):
     qrcode.make()
 
     img = qr.make_image()
-    img.save("EMail-QR-COde.png")
-    
+    img.save("EMail-QR-Code.png")
