@@ -43,6 +43,14 @@ WiFi QR-Code:
 
 - Creates QR-Codes that contain the log-in for a WiFi network
 
+Virtual Business Card:
+
+- Creates QR-Codes that contain information about someone such as a name, email, phone number, etc.
+
+Email QR-Codes:
+
+- Creates QR-Codes that contain a template for an email
+
 ## Installing
 
 ### Linux
