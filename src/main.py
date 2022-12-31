@@ -4,6 +4,7 @@
 import argparse
 import customtkinter as ctk
 from qr_logic import gen_wifi_qr_code, gen_reg_qr_code, gen_vcard_qr_code, gen_email_qr_code
+# Required to package to an exe
 from sys import exit
 # --- Constants ---
 win = ctk.CTk()
