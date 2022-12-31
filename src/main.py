@@ -139,12 +139,14 @@ def calendar_qr_code():
     title = ctk.CTkLabel(master=calendar_qr_frame, text="Calendar QR-Code", font=("Helvetica", 24))
     recipient = ctk.CTkEntry(master=calendar_qr_frame, placeholder_text="Recipient")
     subject = ctk.CTkEntry(master=calendar_qr_frame, placeholder_text="Subject")
-    body = ctk.CTkTextbox(master=calendar_qr_frame, placeholder_text="Body")
+    body = ctk.CTkEntry(master=calendar_qr_frame, placeholder_text="Body")
+    submit = ctk.CTkButton(master=calendar_qr_frame, text="Generate", command=lambda: print("hello"))
 
     title.pack(pady=12, padx=10)
     recipient.pack(pady=12, padx=10)
     subject.pack(pady=12, padx=10)
     body.pack(pady=12, padx=10)
+    submit.pack(pady=12, padx=10)
     
     calendar_qr_frame.pack(pady=20, padx=60, fill="both", expand=True)
     
