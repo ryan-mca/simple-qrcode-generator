@@ -18,7 +18,7 @@ ctk.set_appearance_mode("dark")
 
 # Used in 'main()'
 main_frame = ctk.CTkFrame(master=win)
-cbox = ctk.CTkComboBox(master=main_frame, values=["Regular QR-Code", "WiFi QR-Code", "Business Card QR-Code"],
+cbox = ctk.CTkComboBox(master=main_frame, values=["Regular QR-Code", "WiFi QR-Code", "Business Card QR-Code", "Calendar QR-Code"],
                         font=("Helvetica", 11))
 
 # Used in 'wifi_qr_code()'
@@ -76,6 +76,9 @@ def cbox_logic():
     elif choice == "Business Card QR-Code":
         main_frame.pack_forget()
         vcard_qr_code()
+    elif choice == "Calendar QR-Code":
+        main_frame.pack_forget()
+        calendar_qr_code()
 
 def reg_qr_code():
     """Shows all the reg_qr_code widgets
