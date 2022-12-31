@@ -31,6 +31,9 @@ reg_qr_frame = ctk.CTkFrame(master=win)
 # Used in 'vcard_qr_code()'
 vcard_qr_frame = ctk.CTkFrame(master=win)
 
+# Used in 'calendar_qr_code()'
+calendar_qr_frame = ctk.CTkFrame(master=win)
+
 # --- Functions ---
 def main():
     """Runs the main window
@@ -126,6 +129,22 @@ def vcard_qr_code():
     submit_button.pack(pady=6, padx=10)
 
     vcard_qr_frame.pack(pady=20, padx=60, fill="both", expand=True)
+
+def calendar_qr_code():
+    """Shows all the calendar_qr_code widgets
+    """
+    title = ctk.CTkLabel(master=calendar_qr_frame, text="Calendar QR-Code", font=("Helvetica", 24))
+    recipient = ctk.CTkEntry(master=calendar_qr_frame, placeholder_text="Recipient")
+    subject = ctk.CTkEntry(master=calendar_qr_frame, placeholder_text="Subject")
+    body = ctk.CTkTextbox(master=calendar_qr_frame, placeholder_text="Body")
+
+    title.pack(pady=12, padx=10)
+    recipient.pack(pady=12, padx=10)
+    subject.pack(pady=12, padx=10)
+    body.pack(pady=12, padx=10)
+    
+    calendar_qr_frame.pack(pady=20, padx=60, fill="both", expand=True)
+    
 
 if __name__ == "__main__":
     main()
