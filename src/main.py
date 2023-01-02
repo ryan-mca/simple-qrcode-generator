@@ -8,7 +8,7 @@ from qr_logic import gen_wifi_qr_code, gen_reg_qr_code, gen_vcard_qr_code, gen_e
 from sys import exit
 # --- Constants ---
 win = ctk.CTk()
-VERSION = "1.2.0"
+VERSION = "1.2.1"
 
 # --- CustomTkinter stuff ---
 # Window settings
