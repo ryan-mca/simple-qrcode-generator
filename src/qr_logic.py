@@ -73,7 +73,7 @@ def gen_vcard_qr_code(NAME, COMPANY, PHONE, EMAIL, URL):
     img = qr.make_image()
     img.save("VCard-QR-Code.png")
 
-def gen_email_qr_code(RECIPIENT, SUBJECT, BODY):
+def gen_email_qr_code(RECIPIENT, CC, BCC, SUBJECT, BODY):
     """Creates a QR-Code for an email
 
     Args:
@@ -89,7 +89,7 @@ def gen_email_qr_code(RECIPIENT, SUBJECT, BODY):
         border=2
     )
 
-    email_data = f"MATMSG:TO:{RECIPIENT};SUB:{SUBJECT};BODY:{BODY};;"
+    email_data = f"MATMSG:TO:{RECIPIENT};CC:{CC};BCC:{BCC};SUB:{SUBJECT};BODY:{BODY};;"
 
     qr.add_data(email_data)
     qrcode.make()
