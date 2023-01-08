@@ -3,6 +3,7 @@
 # --- Imports ---
 import argparse
 import customtkinter as ctk
+import cli
 from qr_logic import gen_wifi_qr_code, gen_reg_qr_code, gen_vcard_qr_code, gen_email_qr_code
 # Required to package to an exe
 from sys import exit
@@ -38,12 +39,8 @@ email_qr_frame = ctk.CTkFrame(master=win)
 def main():
     """Runs the main window
     """
-    parser = argparse.ArgumentParser(description="Creates Different types of QR-Codes")
-    parser.add_argument("-v", "--version", help="Prints the version", action="store_true")
-    args = parser.parse_args()
-    if args.version:
-        print(f"Current Version: {VERSION}")
-        exit()
+    # Checks for any cli args
+    args()
 
     cbox_select = ctk.CTkButton(master=main_frame, text="Select", command=cbox_logic)
     main_title = ctk.CTkLabel(master=main_frame, text="Simple QR-Code Generator",
@@ -61,6 +58,51 @@ def main():
     main_frame.pack(pady=20, padx=60, fill="both", expand=True)
 
     win.mainloop()
+
+def args():
+    """Does all of the argparser stuff
+    """
+    parser = argparse.ArgumentParser(
+        prog="Simple QR-Code generator",
+        description="Creates Different types of QR-Codes",
+        epilog="License: GPLv3"
+        )
+
+    # All possible CLI args
+    parser.add_argument("-v", "--version",
+    help="Prints the version",
+    action="store_true"
+    )
+    parser.add_argument("-w", "--wifi-qr",
+    help="Creates a WiFi QR-Code",
+    action="store_true"
+    )
+    parser.add_argument("-r", "--regular-qr",
+    help="Creates a QR-Code that can hold plaintext or URLs",
+    action="store_true"
+    )
+    parser.add_argument("-e", "--email-qr",
+    help="Creates a QR-Code that holds a template for an email",
+    action="store_true"
+    )
+    parser.add_argument("-V", "--vcard-qr",
+    help="Creates a QR-Code that holds a virtual business card",
+    action="store_true"
+    )
+
+    # Checks through all the args
+    args = parser.parse_args()
+    if args.version:
+        print(f"Current Version: {VERSION}")
+        exit()
+    elif args.wifi_qr:
+        cli.wifi_qr()
+    elif args.reg_qr():
+        cli.reg_qr()
+    elif args.email_qr:
+        cli.email_qr()
+    elif args.vcard_qr:
+        cli.vcard_qr()
 
 def cbox_logic():
     """Checks the users choice and runs the respective function
@@ -147,9 +189,8 @@ def email_qr_code():
     subject.pack(pady=12, padx=10)
     body.pack(pady=12, padx=10)
     submit.pack(pady=12, padx=10)
-    
+
     email_qr_frame.pack(pady=20, padx=60, fill="both", expand=True)
-    
 
 if __name__ == "__main__":
     main()

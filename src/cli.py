@@ -37,7 +37,7 @@ def wifi_qr():
     gen_wifi_qr_code(ssid, passwd, sec_type)
     exit(1)
 
-def email_qr_code():
+def email_qr():
     """Creates a template for an email
     """
     # Asks the user for the recipient
