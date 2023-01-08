@@ -78,6 +78,8 @@ def gen_email_qr_code(RECIPIENT, CC, BCC, SUBJECT, BODY):
 
     Args:
         RECIPIENT (String): The recieving email address
+        CC (String): A Carbon Copy email
+        BCC (String): A Blind Carbon Copy email
         SUBJECT (String): The emails subject
         BODY (String): The emails body
     """

@@ -1,14 +1,14 @@
 """Handles the main customtkinter stuff
 """
 # --- Imports ---
+import argparse
 import customtkinter as ctk
 from qr_logic import gen_wifi_qr_code, gen_reg_qr_code, gen_vcard_qr_code, gen_email_qr_code
 # Required to package to an exe
 from sys import exit
-
 # --- Constants ---
 win = ctk.CTk()
-VERSION = "1.2.1"
+VERSION = "1.2.0"
 
 # --- CustomTkinter stuff ---
 # Window settings
@@ -38,6 +38,13 @@ email_qr_frame = ctk.CTkFrame(master=win)
 def main():
     """Runs the main window
     """
+    parser = argparse.ArgumentParser(description="Creates Different types of QR-Codes")
+    parser.add_argument("-v", "--version", help="Prints the version", action="store_true")
+    args = parser.parse_args()
+    if args.version:
+        print(f"Current Version: {VERSION}")
+        exit()
+
     cbox_select = ctk.CTkButton(master=main_frame, text="Select", command=cbox_logic)
     main_title = ctk.CTkLabel(master=main_frame, text="Simple QR-Code Generator",
                             font=("Helvetica", 24))
@@ -131,19 +138,15 @@ def email_qr_code():
     """
     title = ctk.CTkLabel(master=email_qr_frame, text="Calendar QR-Code", font=("Helvetica", 24))
     recipient = ctk.CTkEntry(master=email_qr_frame, placeholder_text="Recipient")
-    cc = ctk.CTkEntry(master=email_qr_frame, placeholder_text="CC")
-    bcc = ctk.CTkEntry(master=email_qr_frame, placeholder_text="BCC")
     subject = ctk.CTkEntry(master=email_qr_frame, placeholder_text="Subject")
     body = ctk.CTkEntry(master=email_qr_frame, placeholder_text="Body")
-    submit = ctk.CTkButton(master=email_qr_frame, text="Generate", command=lambda: gen_email_qr_code(recipient.get(), cc.get(), bcc.get(),subject.get(), body.get()))
+    submit = ctk.CTkButton(master=email_qr_frame, text="Generate", command=lambda: gen_email_qr_code(recipient.get(), subject.get(), body.get()))
 
-    title.pack(pady=6, padx=10)
-    recipient.pack(pady=6, padx=10)
-    cc.pack(pady=6, padx=10)
-    bcc.pack(pady=6, padx=10)
-    subject.pack(pady=6, padx=10)
-    body.pack(pady=6, padx=10)
-    submit.pack(pady=6, padx=10)
+    title.pack(pady=12, padx=10)
+    recipient.pack(pady=12, padx=10)
+    subject.pack(pady=12, padx=10)
+    body.pack(pady=12, padx=10)
+    submit.pack(pady=12, padx=10)
     
     email_qr_frame.pack(pady=20, padx=60, fill="both", expand=True)
     
