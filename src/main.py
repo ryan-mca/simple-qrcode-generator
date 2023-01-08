@@ -1,11 +1,11 @@
 """Handles the main customtkinter stuff
 """
 # --- Imports ---
-import argparse
 import customtkinter as ctk
 from qr_logic import gen_wifi_qr_code, gen_reg_qr_code, gen_vcard_qr_code, gen_email_qr_code
 # Required to package to an exe
 from sys import exit
+
 # --- Constants ---
 win = ctk.CTk()
 VERSION = "1.2.1"
@@ -24,7 +24,6 @@ cbox = ctk.CTkComboBox(master=main_frame, values=["Regular QR-Code", "WiFi QR-Co
 
 # Used in 'wifi_qr_code()'
 wifi_qr_code_frame = ctk.CTkFrame(master=win)
-#file_or_show_cbox = ctk.CTkComboBox(master=wifi_qr_code_frame, values=["Save to File", "Show"]) WIP
 
 # Used in 'reg_qr_code()'
 reg_qr_frame = ctk.CTkFrame(master=win)
@@ -39,13 +38,6 @@ email_qr_frame = ctk.CTkFrame(master=win)
 def main():
     """Runs the main window
     """
-    parser = argparse.ArgumentParser(description="Creates Different types of QR-Codes")
-    parser.add_argument("-v", "--version", help="Prints the version", action="store_true")
-    args = parser.parse_args()
-    if args.version:
-        print(f"Current Version: {VERSION}")
-        exit()
-
     cbox_select = ctk.CTkButton(master=main_frame, text="Select", command=cbox_logic)
     main_title = ctk.CTkLabel(master=main_frame, text="Simple QR-Code Generator",
                             font=("Helvetica", 24))
