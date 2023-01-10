@@ -77,7 +77,7 @@ def args():
     help="Creates a WiFi QR-Code",
     action="store_true"
     )
-    parser.add_argument("-r", "--regular-qr",
+    parser.add_argument("-r", "--reg-qr",
     help="Creates a QR-Code that can hold plaintext or URLs",
     action="store_true"
     )
@@ -97,12 +97,12 @@ def args():
         exit()
     elif args.wifi_qr:
         cli.wifi_qr()
-    elif args.reg_qr():
-        cli.reg_qr()
     elif args.email_qr:
         cli.email_qr()
     elif args.vcard_qr:
         cli.vcard_qr()
+    elif args.reg_qr:
+        cli.reg_qr()
 
 def cbox_logic():
     """Checks the users choice and runs the respective function
@@ -180,15 +180,19 @@ def email_qr_code():
     """
     title = ctk.CTkLabel(master=email_qr_frame, text="Calendar QR-Code", font=("Helvetica", 24))
     recipient = ctk.CTkEntry(master=email_qr_frame, placeholder_text="Recipient")
+    cc = ctk.CTkEntry(master=email_qr_frame, placeholder_text="CC")
+    bcc = ctk.CTkEntry(master=email_qr_frame, placeholder_text="BCC")
     subject = ctk.CTkEntry(master=email_qr_frame, placeholder_text="Subject")
     body = ctk.CTkEntry(master=email_qr_frame, placeholder_text="Body")
-    submit = ctk.CTkButton(master=email_qr_frame, text="Generate", command=lambda: gen_email_qr_code(recipient.get(), subject.get(), body.get()))
+    submit = ctk.CTkButton(master=email_qr_frame, text="Generate", command=lambda: gen_email_qr_code(recipient.get(), cc.get(), bcc.get(), subject.get(), body.get()))
 
-    title.pack(pady=12, padx=10)
-    recipient.pack(pady=12, padx=10)
-    subject.pack(pady=12, padx=10)
-    body.pack(pady=12, padx=10)
-    submit.pack(pady=12, padx=10)
+    title.pack(pady=6, padx=10)
+    recipient.pack(pady=6, padx=10)
+    cc.pack(pady=6, padx=10)
+    bcc.pack(pady=6, padx=10)
+    subject.pack(pady=6, padx=10)
+    body.pack(pady=6, padx=10)
+    submit.pack(pady=6, padx=10)
 
     email_qr_frame.pack(pady=20, padx=60, fill="both", expand=True)
 
